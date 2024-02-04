@@ -1,0 +1,15 @@
+plugins {
+    id 'org.springframework.boot' version "${springBootVersion}"
+}
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation("org.springframework.boot:spring-boot-autoconfigure:${property('spring-boot-autoconfigure-version')}")
+
+    runtimeOnly("com.h2database:h2:${property('h2-version')}")
+
+    implementation("org.springframework.boot:spring-boot-starter-web:${property('spring-boot-web-version')}")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:${property('spring-boot-data-jpa-version')}")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${property('spring-boot-test-version')}")
+}
