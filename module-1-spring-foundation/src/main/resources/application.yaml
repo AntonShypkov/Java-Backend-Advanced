@@ -4,3 +4,10 @@ spring:
     driver-class-name: org.h2.Driver
     username: SA
     password:
+
+custom:
+  datasource:
+    enabled: false
+    url: jdbc:h2:mem:local:custom
+
+debug: false
