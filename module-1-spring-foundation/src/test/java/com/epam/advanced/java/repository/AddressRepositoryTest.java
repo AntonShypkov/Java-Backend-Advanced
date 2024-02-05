@@ -4,12 +4,16 @@ package com.epam.advanced.java.repository;
 import com.epam.advanced.java.entity.Address;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@ActiveProfiles("test")
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @DataJpaTest
 class AddressRepositoryTest {
 
@@ -20,7 +24,7 @@ class AddressRepositoryTest {
     void save() {
         //given
         var testAddress = Address.builder()
-                .addresName("Travell Agency 'Around the World'")
+                .addresName("Travel Agency 'Around the World'")
                 .country("Georgia")
                 .city("Batumi")
                 .street("Tbel_Abuseridze")

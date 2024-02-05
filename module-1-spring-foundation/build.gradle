@@ -13,3 +13,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:${property('spring-boot-data-jpa-version')}")
     testImplementation("org.springframework.boot:spring-boot-starter-test:${property('spring-boot-test-version')}")
 }
+
+tasks.register("bootRunLocal",)
+
+bootRun {
+    systemProperties = System.properties as Map<String, ?>
+}
