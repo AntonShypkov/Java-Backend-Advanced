@@ -12,6 +12,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web:${property('spring-boot-web-version')}")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:${property('spring-boot-data-jpa-version')}")
     testImplementation("org.springframework.boot:spring-boot-starter-test:${property('spring-boot-test-version')}")
+
+    implementation("org.springframework.boot:spring-boot-starter-actuator:${property('spring-boot-actuator-version')}")
+    implementation("org.springframework.boot:spring-boot-starter-security:${property('spring-boot-security-version')}")
 }
 
 tasks.register("bootRunLocal",)
