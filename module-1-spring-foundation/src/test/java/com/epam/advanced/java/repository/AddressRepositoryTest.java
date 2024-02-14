@@ -38,7 +38,6 @@ class AddressRepositoryTest {
         //then
         var addresses = addressRepository.findAll();
 
-        assertThat(addresses).hasSize(1);
-        assertThat(addresses).hasSameElementsAs(List.of(testAddress));
+        assertThat(addresses).hasSize(1).hasSameElementsAs(List.of(testAddress));
     }
 }

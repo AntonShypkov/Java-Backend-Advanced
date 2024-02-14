@@ -3,18 +3,19 @@ plugins {
 }
 
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-autoconfigure:${property('spring-boot-autoconfigure-version')}")
+    implementation("org.springframework.boot:spring-boot-autoconfigure")
 
     runtimeOnly("com.h2database:h2:${property('h2-version')}")
 
-    implementation("org.springframework.boot:spring-boot-starter-web:${property('spring-boot-web-version')}")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa:${property('spring-boot-data-jpa-version')}")
-    testImplementation("org.springframework.boot:spring-boot-starter-test:${property('spring-boot-test-version')}")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-    implementation("org.springframework.boot:spring-boot-starter-actuator:${property('spring-boot-actuator-version')}")
-    implementation("org.springframework.boot:spring-boot-starter-security:${property('spring-boot-security-version')}")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-security")
 }
 
 tasks.register("bootRunLocal",)
