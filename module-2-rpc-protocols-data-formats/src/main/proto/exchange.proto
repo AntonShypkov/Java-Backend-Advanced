@@ -1,0 +1,21 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+package com.epam.advanced.java.exchange;
+
+option java_package = "com.epam.advanced.java.exchange";
+option java_multiple_files = true;
+
+service MessagesExchangeService{
+  rpc getInboundMessage(MessageRequest) returns (MessageResponse);
+}
+
+message MessageRequest{
+  string message = 1;
+  google.protobuf.Timestamp message_time = 2;
+}
+
+message MessageResponse{
+  string message = 1;
+  google.protobuf.Timestamp message_time = 2;
+}
