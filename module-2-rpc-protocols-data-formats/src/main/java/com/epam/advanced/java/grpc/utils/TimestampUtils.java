@@ -1,4 +1,4 @@
-package com.epam.advanced.java.utils;
+package com.epam.advanced.java.grpc.utils;
 
 import com.google.protobuf.Timestamp;
 import lombok.AccessLevel;

@@ -1,6 +1,6 @@
-package com.epam.advanced.java.server;
+package com.epam.advanced.java.grpc.server;
 
-import com.epam.advanced.java.service.MessageExchangeServiceImpl;
+import com.epam.advanced.java.grpc.service.MessageExchangeServiceImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import lombok.SneakyThrows;

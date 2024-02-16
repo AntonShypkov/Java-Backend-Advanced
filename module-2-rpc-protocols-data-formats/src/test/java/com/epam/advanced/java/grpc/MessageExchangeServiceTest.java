@@ -1,5 +1,7 @@
-import com.epam.advanced.java.client.MessageExchangeClient;
-import com.epam.advanced.java.server.MessageExchangeServer;
+package com.epam.advanced.java.grpc;
+
+import com.epam.advanced.java.grpc.client.MessageExchangeClient;
+import com.epam.advanced.java.grpc.server.MessageExchangeServer;
 import io.grpc.Channel;
 import io.grpc.ManagedChannelBuilder;
 import org.junit.jupiter.api.AfterAll;

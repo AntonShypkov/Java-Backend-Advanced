@@ -1,9 +1,9 @@
-package com.epam.advanced.java.service;
+package com.epam.advanced.java.grpc.service;
 
 import com.epam.advanced.java.exchange.MessageRequest;
 import com.epam.advanced.java.exchange.MessageResponse;
 import com.epam.advanced.java.exchange.MessagesExchangeServiceGrpc;
-import com.epam.advanced.java.utils.TimestampUtils;
+import com.epam.advanced.java.grpc.utils.TimestampUtils;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 
