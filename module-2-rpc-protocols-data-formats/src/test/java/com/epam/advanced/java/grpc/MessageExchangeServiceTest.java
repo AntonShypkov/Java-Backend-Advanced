@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static com.epam.advanced.java.grpc.constants.NetworkConstants.SERVICE_HOST;
+import static com.epam.advanced.java.grpc.constants.NetworkConstants.SERVICE_PORT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MessageExchangeServiceTest {
@@ -38,7 +40,7 @@ public class MessageExchangeServiceTest {
     @BeforeEach
     void createMessageExchangeClient() {
         Channel channel = ManagedChannelBuilder
-                .forAddress("localhost", 8080)
+                .forAddress(SERVICE_HOST, SERVICE_PORT)
                 .usePlaintext()
                 .build();
         messageExchangeClient = new MessageExchangeClient(channel);

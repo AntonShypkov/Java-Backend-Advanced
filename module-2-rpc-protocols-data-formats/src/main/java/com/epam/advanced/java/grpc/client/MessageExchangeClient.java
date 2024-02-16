@@ -10,6 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
+import static com.epam.advanced.java.grpc.constants.NetworkConstants.SERVICE_HOST;
+import static com.epam.advanced.java.grpc.constants.NetworkConstants.SERVICE_PORT;
+
 @Slf4j
 public class MessageExchangeClient {
     private final MessagesExchangeServiceGrpc.MessagesExchangeServiceBlockingStub messagesExchangeServiceBlockingStub;
@@ -32,7 +35,7 @@ public class MessageExchangeClient {
         log.info("Client has prepared message to be sent to exchange server.");
 
         Channel channel = ManagedChannelBuilder
-                .forAddress("localhost", 8080)
+                .forAddress(SERVICE_HOST, SERVICE_PORT)
                 .usePlaintext()
                 .build();
         var client = new MessageExchangeClient(channel);

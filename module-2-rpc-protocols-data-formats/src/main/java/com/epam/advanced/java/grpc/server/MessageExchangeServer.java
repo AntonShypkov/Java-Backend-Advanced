@@ -8,19 +8,19 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.TimeUnit;
 
+import static com.epam.advanced.java.grpc.constants.NetworkConstants.SERVICE_PORT;
+
 @Slf4j
 public class MessageExchangeServer {
     private Server server;
 
     @SneakyThrows
     public void startServer() {
-        int listeningPort = 8080;
-
-        server = ServerBuilder.forPort(listeningPort)
+        server = ServerBuilder.forPort(SERVICE_PORT)
                 .addService(new MessageExchangeServiceImpl())
                 .build()
                 .start();
-        log.info("Message Exchange server has started on port {}", listeningPort);
+        log.info("Message Exchange server has started on port {}", SERVICE_PORT);
     }
 
     public void stopServer() throws InterruptedException {
