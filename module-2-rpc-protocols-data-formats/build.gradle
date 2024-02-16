@@ -1,11 +1,14 @@
 plugins {
     id 'com.google.protobuf' version "${googleProtobufVersion}"
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id( "com.github.davidmc24.gradle.plugin.avro") version "1.0.0"
 }
 
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.github.davidmc24.gradle.plugin.avro'
+
 dependencies {
-    repositories {
-        mavenCentral()
-    }
 
     implementation "io.grpc:grpc-netty-shaded:${property('grpc-netty-shade-version')}"
     implementation "io.grpc:grpc-protobuf:${property('grpc-protobuf-version')}"
@@ -17,6 +20,14 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:${property('junit-version')}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${property('junit-version')}"
     testImplementation "org.junit.jupiter:junit-jupiter-api:${property('junit-version')}"
+
+    implementation("org.springframework.boot:spring-boot-autoconfigure")
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.kafka:spring-kafka")
+
+    implementation "org.apache.avro:avro-compiler:${property('avro-compiler-version')}"
 }
 
 protobuf {
@@ -41,10 +52,20 @@ sourceSets {
         proto {
             srcDirs 'src/main/proto'
         }
+        avro {
+
+        }
+        generateAvroProtocol{
+            source "src/main/avro"
+            outputDir file("build/generated-main-avro-protocol")
+        }
+        generateAvroJava{
+            source "src/main/avro"
+            outputDir file("build/generated-main-avro-java")
+        }
         java {
             srcDirs 'build/generated/source/proto/main/grpc'
             srcDirs 'build/generated/source/proto/main/java'
-
         }
     }
 }
