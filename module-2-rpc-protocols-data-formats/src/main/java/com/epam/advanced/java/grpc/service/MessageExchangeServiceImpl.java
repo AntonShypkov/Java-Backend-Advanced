@@ -3,7 +3,7 @@ package com.epam.advanced.java.grpc.service;
 import com.epam.advanced.java.exchange.MessageRequest;
 import com.epam.advanced.java.exchange.MessageResponse;
 import com.epam.advanced.java.exchange.MessagesExchangeServiceGrpc;
-import com.epam.advanced.java.grpc.utils.TimestampUtils;
+import com.epam.advanced.java.utils.DateTimeUtils;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,7 +19,7 @@ public class MessageExchangeServiceImpl extends MessagesExchangeServiceGrpc.Mess
     @Override
     public void getInboundMessage(MessageRequest request, StreamObserver<MessageResponse> response) {
         String inboundMessage = request.getMessage();
-        LocalDateTime receivedAt = TimestampUtils.parseTimestamp(request.getMessageTime());
+        LocalDateTime receivedAt = DateTimeUtils.timestampToLocalDateTime(request.getMessageTime());
 
         log.info("Inbound message '{}' received at {} {}", inboundMessage, receivedAt.toLocalDate(), receivedAt.toLocalTime());
         var messageResponseBuilder = MessageResponse.newBuilder();
@@ -33,7 +33,7 @@ public class MessageExchangeServiceImpl extends MessagesExchangeServiceGrpc.Mess
             log.warn("non-Ping message has come.");
         }
 
-        messageResponseBuilder.setMessageTime(TimestampUtils.nowTime());
+        messageResponseBuilder.setMessageTime(DateTimeUtils.nowTime());
         var messageResponse = messageResponseBuilder.build();
         response.onNext(messageResponseBuilder.build());
         response.onCompleted();

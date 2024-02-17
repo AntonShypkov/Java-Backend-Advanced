@@ -3,7 +3,7 @@ package com.epam.advanced.java.grpc.client;
 import com.epam.advanced.java.exchange.MessageRequest;
 import com.epam.advanced.java.exchange.MessageResponse;
 import com.epam.advanced.java.exchange.MessagesExchangeServiceGrpc;
-import com.epam.advanced.java.grpc.utils.TimestampUtils;
+import com.epam.advanced.java.utils.DateTimeUtils;
 import io.grpc.Channel;
 import io.grpc.ManagedChannelBuilder;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class MessageExchangeClient {
     public MessageResponse sendMessage(String message) {
         var request = MessageRequest.newBuilder()
                 .setMessage(message)
-                .setMessageTime(TimestampUtils.nowTime())
+                .setMessageTime(DateTimeUtils.nowTime())
                 .build();
 
         return messagesExchangeServiceBlockingStub.getInboundMessage(request);
@@ -44,7 +44,7 @@ public class MessageExchangeClient {
         messages.forEach(message -> {
             log.info("Client is sending message: {}", message);
             var response = client.sendMessage(message);
-            var recievedAt = TimestampUtils.parseTimestamp(response.getMessageTime());
+            var recievedAt = DateTimeUtils.timestampToLocalDateTime(response.getMessageTime());
 
             log.info("Client has obtained answer: '{}', received at {} {}",
                     response.getMessage(), recievedAt.toLocalDate(), recievedAt.toLocalTime());

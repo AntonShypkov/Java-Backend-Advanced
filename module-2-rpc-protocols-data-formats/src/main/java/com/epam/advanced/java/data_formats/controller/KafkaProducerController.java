@@ -18,7 +18,7 @@ public class KafkaProducerController {
     @PostMapping("/send")
     public void sendKafkaMessage (@RequestBody String message){
         log.info("Controller get POST request to send message to Kafka: '{}'", message);
-        avroMessageProducer.sendMessageWithCallback(message);
+        avroMessageProducer.sendMessage(message);
         log.info("Message sent by controller");
     }
 }
