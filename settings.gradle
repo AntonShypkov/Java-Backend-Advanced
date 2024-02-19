@@ -1,0 +1,3 @@
+rootProject.name = 'Java-Backend-Advanced'
+
+include 'module-1-spring-foundation'

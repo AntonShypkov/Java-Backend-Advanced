@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:env:local
+    driver-class-name: org.h2.Driver
+    username: SA_local
+    password:
+
+custom:
+  datasource:
+    enabled: true
+    url: jdbc:h2:mem:env:local:custom
+
+debug: false

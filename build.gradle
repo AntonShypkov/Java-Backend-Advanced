@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly "org.projectlombok:lombok:${property('lombok-version')}"
+        annotationProcessor "org.projectlombok:lombok:${property('lombok-version')}"
+        testCompileOnly "org.projectlombok:lombok:${property('lombok-version')}"
+        testAnnotationProcessor "org.projectlombok:lombok:${property('lombok-version')}"
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
