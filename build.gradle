@@ -14,6 +14,9 @@ subprojects {
         annotationProcessor "org.projectlombok:lombok:${property('lombok-version')}"
         testCompileOnly "org.projectlombok:lombok:${property('lombok-version')}"
         testAnnotationProcessor "org.projectlombok:lombok:${property('lombok-version')}"
+
+        implementation("ch.qos.logback:logback-core:${property('logback-version')}")
+        implementation("ch.qos.logback:logback-classic:${property('logback-version' )}")
     }
 
     test {

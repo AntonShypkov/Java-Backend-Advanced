@@ -1,3 +1,5 @@
 rootProject.name = 'Java-Backend-Advanced'
 
 include 'module-1-spring-foundation'
+include 'module-2-rpc-protocols-data-formats'
+

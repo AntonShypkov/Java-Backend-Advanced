@@ -1,0 +1,15 @@
+{
+   "type":"record",
+   "name":"Message",
+   "namespace":"com.epam.advanced.java",
+   "fields":[
+      {
+         "name":"message",
+         "type":"string"
+      },
+      {
+         "name":"message_timpestamp",
+         "type":"long"
+      }
+   ]
+}

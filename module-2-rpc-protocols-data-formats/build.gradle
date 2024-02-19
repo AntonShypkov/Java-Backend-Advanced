@@ -1,0 +1,76 @@
+plugins {
+    id 'com.google.protobuf' version "${googleProtobufVersion}"
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id( "com.github.davidmc24.gradle.plugin.avro") version "1.0.0"
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.github.davidmc24.gradle.plugin.avro'
+
+repositories {
+    maven {
+        url "https://packages.confluent.io/maven"
+    }
+}
+
+dependencies {
+
+    implementation "io.grpc:grpc-netty-shaded:${property('grpc-netty-shade-version')}"
+    implementation "io.grpc:grpc-protobuf:${property('grpc-protobuf-version')}"
+    implementation "io.grpc:grpc-stub:${property('grpc-stub-version')}"
+    implementation "com.google.protobuf:protobuf-java-util:${property('protobuf-java-util-version')}"
+    implementation "com.google.protobuf:protobuf-java:${property('protobuf-java-version')}"
+    implementation "javax.annotation:javax.annotation-api:${property('javax-annotation-api-version')}"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${property('junit-version')}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${property('junit-version')}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${property('junit-version')}"
+
+    implementation("org.springframework.boot:spring-boot-autoconfigure")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.kafka:spring-kafka")
+
+    implementation "org.apache.avro:avro-compiler:${property('avro-compiler-version')}"
+
+    implementation "io.confluent:kafka-avro-serializer:7.5.1"
+
+}
+
+protobuf {
+    protoc { artifact = "com.google.protobuf:protoc:${property('google-protobuf-protoc-version')}" }
+    plugins {
+        grpc { artifact = "io.grpc:protoc-gen-grpc-java:${property('grpc-protoc-gen-grpc-java-version')}" }
+    }
+    generateProtoTasks {
+        all()*.plugins { grpc {} }
+    }
+}
+
+processResources {
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+}
+
+sourceSets {
+    main {
+        proto {
+            srcDirs 'src/main/proto'
+        }
+        avro {
+
+        }
+        generateAvroProtocol{
+            source "src/main/avro"
+            outputDir file("build/generated-main-avro-protocol")
+        }
+        generateAvroJava{
+            source "src/main/avro"
+            outputDir file("build/generated-main-avro-java")
+        }
+        java {
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/java'
+        }
+    }
+}

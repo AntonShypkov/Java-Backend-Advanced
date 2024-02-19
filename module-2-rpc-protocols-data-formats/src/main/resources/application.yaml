@@ -1,0 +1,7 @@
+spring:
+  kafka:
+    groupId: avro
+    bootstrap:
+      servers: ${KAFKA_HOST}:${KAFKA_PORT}
+
+debug: false
